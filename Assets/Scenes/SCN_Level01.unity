@@ -3451,11 +3451,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1810964854 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8835229685202505509, guid: 00afc9fb4087652419d090da0b825d97, type: 3}
-  m_PrefabInstance: {fileID: 5790447825513800731}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1812774649
 GameObject:
   m_ObjectHideFlags: 0
@@ -3882,11 +3877,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 597cc1b8500581d4b898678095d1fd03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 1810964854}
+  playerPrefab: {fileID: 8835229685202505509, guid: 00afc9fb4087652419d090da0b825d97, type: 3}
   enemies:
   - {fileID: 8763598642799732872}
   - {fileID: 3599279343249421193}
   startPoint: {fileID: 501635429}
+  duration: 0.2
+  delay: 0.05
+  ease: 27
 --- !u!4 &2083213953
 Transform:
   m_ObjectHideFlags: 0
