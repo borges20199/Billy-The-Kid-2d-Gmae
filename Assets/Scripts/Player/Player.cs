@@ -7,22 +7,36 @@ public class Player : MonoBehaviour
 {
     public Rigidbody2D myRigidbody;
 
+
+
     [Header("Speed setup")]
     public Vector2 friction = new Vector2(-.1f, 0);
     public float speed;
     public float speedRun;
     public float forceJump = 2;
 
+
+
     [Header("Animation setup")]
     public float jumpScaleY = 1.5f;
     public float jumpScaleX = 0.7f;
     public float animationDuration = .3f;
-
     public float squashScaleY = 0.5f; 
     public float squashScaleX = 1.5f; 
     public float squashDuration = 0.2f;
-
     public Ease ease = Ease.OutBack;
+
+
+    [Header("Animation player")]
+    public string boolRun = "Run";
+    public Animator animator; 
+
+
+
+
+
+
+
 
     private float _currentSpeed;
 
@@ -46,11 +60,22 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             myRigidbody.velocity = new Vector2(-_currentSpeed, myRigidbody.velocity.y);
+            myRigidbody.transform.localScale = new Vector3(-1,1,1);
+            animator.SetBool(boolRun, true);
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
             myRigidbody.velocity = new Vector2(_currentSpeed, myRigidbody.velocity.y);
+            myRigidbody.transform.localScale = new Vector3(1,1,1);
+            animator.SetBool(boolRun, true);
         }
+
+        else{
+            animator.SetBool(boolRun, false);
+        }
+
+
+
 
         if (myRigidbody.velocity.x > 0)
         {
@@ -71,33 +96,21 @@ public class Player : MonoBehaviour
 
         DOTween.Kill(myRigidbody.transform);
 
-        // Adicionando animação de pulo
-        HandleScaleJump(() =>
-        {
-            // Função a ser chamada após a conclusão da animação de pulo
-            HandleSquash();
-        });
-    }
+        
+        //HandleScaleJump() 
+       
 }
 
-private void HandleScaleJump(System.Action onCompleteCallback)
-{
-    myRigidbody.transform.DOScaleY(jumpScaleY, animationDuration).SetLoops(2, LoopType.Yoyo).SetEase(ease);
-    myRigidbody.transform.DOScaleX(jumpScaleX, animationDuration).SetLoops(2, LoopType.Yoyo).SetEase(ease)
-        .OnComplete(() =>
-        {
-            onCompleteCallback?.Invoke();
-        });
-}
+// private void HandleScaleJump(System.Action onCompleteCallback)
+// {
+//     myRigidbody.transform.DOScaleY(jumpScaleY, animationDuration).SetLoops(2, LoopType.Yoyo).SetEase(ease);
+//     myRigidbody.transform.DOScaleX(jumpScaleX, animationDuration).SetLoops(2, LoopType.Yoyo).SetEase(ease)
+//         .OnComplete(() =>
+//         {
+//             onCompleteCallback?.Invoke();
+//         });
+// }
 
-private void HandleSquash()
-{
-    // Animando o achatamento quando aterrissa
-    myRigidbody.transform.DOScaleY(squashScaleY, squashDuration).SetEase(ease);
-    myRigidbody.transform.DOScaleX(squashScaleX, squashDuration).SetEase(ease).OnComplete(() =>
-    {
-        // Resetar a escala após a animação de achatamento
-        myRigidbody.transform.DOScale(Vector2.one, squashDuration);
-    });
+
 }
 }
