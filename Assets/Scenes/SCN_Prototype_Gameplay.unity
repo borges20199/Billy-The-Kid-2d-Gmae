@@ -2394,8 +2394,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myRigidbody: {fileID: 841624870}
-  friction: {x: -0.1, y: 0}
-  speed: 10
+  friction: {x: -0.3, y: 0}
+  speed: 20
   speedRun: 50
   forceJump: 30
   jumpScaleY: 1.5
