@@ -7,12 +7,13 @@ public class HealthBase : MonoBehaviour
     public int startLife = 10;
 
     public bool destroyOnKill = false;
+    public float delayToKill = 0f;
 
     private int _currentLife;
-
     private bool _isDead = false;
 
-    public float delayToKill = 0f;
+    private void FlashColor _flashColor;
+    
 
 
 
@@ -20,6 +21,10 @@ public class HealthBase : MonoBehaviour
     private void Awake()
     {
         Init();
+        if(_flashColor ==null)
+        {
+            _flashColor = GetComponent<FlashColor>();
+        }
     }
 
     private void Init()
